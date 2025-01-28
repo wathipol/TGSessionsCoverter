@@ -8,8 +8,6 @@ from telethon.version import __version__ as telethon_version
 from pathlib import Path
 from stream_sqlite import stream_sqlite
 from typing import Union
-from opentele.td import TDesktop
-from opentele.api import APIData
 import io
 import nest_asyncio
 import asyncio
@@ -90,6 +88,8 @@ class TelegramSession:
         Returns:
             bool: True if conversion was successful
         """
+        from opentele.td import TDesktop
+        from opentele.api import APIData
         
         # Ensure folder exists
         tdata_path = Path(folder_name)
