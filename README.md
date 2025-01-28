@@ -49,6 +49,12 @@ client.disconnect()
 
 # To telethon session file (SQLite)
 session.make_telethon_session_file("telethon.session")
+
+# To Pyrogram SQLite session file
+pyrogram_path = session.to_pyrogram_sqlite("pyrogram_session")
+
+# To Telegram Desktop tdata folder
+success = session.to_tdata("tdata_folder")
 ```
 
 ## Docs
@@ -56,16 +62,28 @@ session.make_telethon_session_file("telethon.session")
 ### How it works
 > An authorization session consists of an authorization key and some additional data required to connect. The module simply extracts this data and creates an instance of TelegramSession based on it, the methods of which are convenient to use to convert to the format you need.
 
-
-
 ### TelegramSession
 
 ...
 
 ### Converting to the format whats you need
 
-...
+The TelegramSession class provides several methods to convert your session to different formats:
 
+**to_pyrogram_sqlite(session_name: str = "pyrogram", workdir: str = None) -> str**
+- Creates a Pyrogram SQLite session file from the current session
+- Parameters:
+  - session_name: Name for the session file (without .session extension)
+  - workdir: Working directory to save the session file (default: current directory)
+- Returns: Path to the created session file
+
+**to_tdata(folder_name: str = "tdata") -> bool**
+- Converts the current session to Telegram Desktop tdata folder format
+- Parameters:
+  - folder_name: Name of the output folder to store tdata
+- Returns: True if conversion was successful
+
+...
 
 ## TODO
 
@@ -75,8 +93,8 @@ session.make_telethon_session_file("telethon.session")
 - [x] To telethon client object (Sync\Async)
 - [x] To telethon SQLite session file
 - [x] To pyrogram client object
-- [ ] To pyrogram SQLite session file
-- [ ] To tdata
+- [x] To pyrogram SQLite session file
+- [x] To tdata
 - [x] From telethon client object
 - [ ] From pyrogram client object
 - [ ] CLI usage
